@@ -1,5 +1,6 @@
 # Bible_in_Markdown
-Bash script which converts The Holy Bible from an xml format to Markdown suitable for Obsidian 
+Bash script which converts The Holy Bible from an xml format to Markdown suitable for Obsidian
+
 Download a Bible of your choice from [https://www.ph4.org/b4_mobi.php?q=zefania](https://www.ph4.org/b4_mobi.php?q=zefania)
 
 Place that zip file in the same folder as this bash script.
