@@ -66,8 +66,6 @@ unzip $f
 bible_version=$(echo $f | sed 's/\(.*\)\.zip/\1/')
 echo "main_folder = $bible_version"
 mkdir ./$bible_version
-exit
-#
 #
 #######################################
 # Array of short book names of the Bible
@@ -233,4 +231,4 @@ do
 		echo ""
 	fi
 
-done < Bible_English_RSV.xml
+done < "$bible_version".xml
