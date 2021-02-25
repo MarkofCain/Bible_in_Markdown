@@ -10,16 +10,18 @@ Run the bash script.  In about 3 to 4 minutes you will have a master folder with
 ### For Best Viewing Results:
 The following css snippet will move the verse numbers to the side, gray them out slightly making for a less obstrusive rreading of the text.  The verse numbers will be "there" but they won't be "in your face."
 
- 1. Turn CSS Snippets "On" in your settings:
-  - click on the "settings" icon
-  - under "OPTIONS" go to "Appearance"
-  - under "CSS snippets" toggle the switch to the "on" position 
- 2. In your snippets folder (the location of which should be displayed near the toggle switch) create the file "snippets.css"  - then add the following code:
- 3.     /* Bible Verses in preview */
+1. Turn CSS Snippets "On" in your settings:
+- click on the "settings" icon
+- under "OPTIONS" go to "Appearance"
+- under "CSS snippets" toggle the switch to the "on" position 
+2. In your snippets folder (the location of which should be displayed near the toggle switch) create the file "snippets.css"  - then add the following code:
+
+<pre>
+/* Bible Verses in preview */
 .markdown-preview-view h6,
 .cc-pretty-preview .markdown-preview-view h6
 {
-  position: relative;
+ position: relative;
   left: -4%;
   top: 18px;
   line-height: 0px;
@@ -29,7 +31,8 @@ The following css snippet will move the verse numbers to the side, gray them out
   font-weight: 500;
   font-size: 10px !important;
   font-weight: bold;
-  font-style: normal;;
+  font-style: normal;
   color: var(--text-faint) !important;
 }
  
+</pre>
