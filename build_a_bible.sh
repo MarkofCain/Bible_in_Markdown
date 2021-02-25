@@ -4,11 +4,11 @@
 ####
 ###
 ##
-#  __  __                  _         ____           _
-# |  \/  |   __ _   _ __  | | __    / ___|   __ _  (_)  _ __
-# | |\/| |  / _` | | '__| | |/ /   | |      / _` | | | | '_ \
-# | |  | | | (_| | | |    |   <    | |___  | (_| | | | | | | |
-# |_|  |_|  \__,_| |_|    |_|\_\    \____|  \__,_| |_| |_| |_|
+#  __  __                  _           ____           _
+# |  \/  |   __ _   _ __  | | __      / ___|   __ _  (_)  _ __
+# | |\/| |  / _` | | '__| | |/ /     | |      / _` | | | | '_ \
+# | |  | | | (_| | | |    |   <      | |___  | (_| | | | | | | |
+# |_|  |_|  \__,_| |_|    |_|\_\      \____|  \__,_| |_| |_| |_|
 #
 ##
 ###
@@ -64,8 +64,9 @@ unzip $f
 ############################
 # Create the master folder based on the Bible version name
 bible_version=$(echo $f | sed 's/\(.*\)\.zip/\1/')
-echo "main_folder = $bible_version"
-mkdir ./$bible_version
+echo "Ah! Looks like you'll be reading the $bible_version"
+main_folder=$bible_version
+mkdir ./$main_folder
 #
 #######################################
 # Array of short book names of the Bible
@@ -94,7 +95,7 @@ function start_a_new_book () {
 	echo "Making the Folder for the Book of $current_book_name_full"
 
 	# Make a folder for the New Book
-	mkdir ./"${current_book_number_padded} - ${current_book_name_full}"
+	mkdir ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"
 }
 
 
@@ -107,10 +108,10 @@ function start_a_new_chapter () {
 	echo "Making a file for $current_book_name_full $current_chapter_number"
 
 	# print the first line of the file
-	echo "# ${current_book_name_full} $current_chapter_number" > ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo "# ${current_book_name_full} $current_chapter_number" > ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 
 	# print a blank line
-	echo "" >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo "" >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 
 	# let's look at the current chapter number and determine which linking header to print
 	#  There are 4 possible conditions:
@@ -147,10 +148,10 @@ function start_a_new_chapter () {
 	fi
 
 	# print a horizontal rule separating the header from the the text
-	echo "***" >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo "***" >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 
 	# Separate the header from the text with a blank line
-	echo "" >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo "" >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 
 }
 
@@ -160,7 +161,7 @@ function print_heading_first_chapter () {
 	next_chapter_number_padded=$(echo $((current_chapter_number+1)) | awk '{printf "%02d", $1}')
 	header="[[${current_book_name_full}]] | [[$current_book_name_short-$next_chapter_number_padded|$current_book_name_full - Chapter $next_chapter_number ]]"
 	footer=$header
-	echo $header >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo $header >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 }
 
 function print_heading_middle_chapter () {
@@ -170,7 +171,7 @@ function print_heading_middle_chapter () {
 	last_chapter_number=$(echo $((current_chapter_number-1)) | awk '{print $1}')
 	header="[[$current_book_name_short-$last_chapter_number_padded|$current_book_name_full - Chapter $last_chapter_number ]]  | [[$current_book_name_full]] |  [[$current_book_name_short-$next_chapter_number_padded|$current_book_name_full - Chapter $next_chapter_number ]]"
 	footer=$header
-	echo $header >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo $header >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 }
 
 function print_heading_last_chapter () {
@@ -178,32 +179,32 @@ function print_heading_last_chapter () {
 	last_chapter_number=$(echo $((current_chapter_number-1)) | awk '{print $1}')
 	header="[[$current_book_name_short-$last_chapter_number_padded|$current_book_name_full - Chapter $last_chapter_number]]  | [[$current_book_name_full]]"
 	footer=$header
-	echo $header >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo $header >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 }
 
 function print_heading_first_and_last_chapter () {
 	header="[[$current_book_name_full]]"
 	footer=$header
-	echo $header >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo $header >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 }
 
 function print_current_footer () {
 
 	# print a blank line; then a horizontal rule; than another blank line
-	echo "" >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
-	echo "***" >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
-	echo "" >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo "" >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo "***" >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo "" >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 
 	# print the footer for the current chapter
-	echo $footer >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo $footer >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 }
 
 function print_current_verse () {
 	current_verse_number=$(echo $one_line | awk -F'"' '{print $2}')
-	current_text=$(echo $one_line | sed 's/.*>\(.*\)<\/VERS>.*$/\1/' | sed 's/^ //' | sed 's/`/'\''/g')
-
-  echo "###### v$current_verse_number" >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
-	echo $current_text >> ./"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	current_text=$(echo $one_line          | sed 's/.*>\(.*\)<\/VERS>.*$/\1/'          | sed 's/^ //'            | sed 's/`/'\''/g')
+#                  #take the 1 line of text       #get what's between <VERS> and </VERS>      # del leading spaces    # replace backticks with apostrophes  
+  echo "###### v$current_verse_number" >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
+	echo $current_text >> ./"${main_folder}"/"${current_book_number_padded} - ${current_book_name_full}"/"${current_book_name_short}-$current_chapter_number_padded".md
 
 }
 
