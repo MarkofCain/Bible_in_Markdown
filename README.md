@@ -15,7 +15,7 @@ The following css snippet will move the verse numbers to the side, gray them out
 - under "OPTIONS" go to "Appearance"
 - under "CSS snippets" toggle the switch to the "on" position 
 2. In your snippets folder (the location of which should be displayed near the toggle switch) create the file "snippets.css"  - then add the following code:
-3. 
+
 <pre>
 /* Bible Verses in preview */
 .markdown-preview-view h6,
