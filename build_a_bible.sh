@@ -232,3 +232,4 @@ do
 	fi
 
 done < "$bible_version".xml
+
