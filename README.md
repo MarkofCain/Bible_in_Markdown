@@ -16,22 +16,22 @@ The following css snippet will move the verse numbers to the side, gray them out
 - under "CSS snippets" toggle the switch to the "on" position 
 2. In your snippets folder (the location of which should be displayed near the toggle switch) create the file "snippets.css"  - then add the following code:
 3. 
-/* Bible Verses in preview */
-.markdown-preview-view h6,
-.cc-pretty-preview .markdown-preview-view h6
-{
-  position: relative;
-  left: -4%;
-  top: 18px;
-  line-height: 0px;
-  margin-top: -20px;
-  margin-right: 3px;
-  font-family: var(--font-family-preview);
-  font-weight: 500;
-  font-size: 10px !important;
-  font-weight: bold;
-  font-style: normal;;
-  color: var(--text-faint) !important;
-}
+`/* Bible Verses in preview */`
+`.markdown-preview-view h6,`
+`.cc-pretty-preview .markdown-preview-view h6`
+`{`
+ ` position: relative;`
+  `left: -4%;`
+  `top: 18px;`
+  `line-height: 0px;`
+  `margin-top: -20px;`
+  `margin-right: 3px;`
+  `font-family: var(--font-family-preview);`
+  `font-weight: 500;`
+  `font-size: 10px !important;`
+  `font-weight: bold;`
+  `font-style: normal;;`
+  `color: var(--text-faint) !important;`
+`}`
  
 
