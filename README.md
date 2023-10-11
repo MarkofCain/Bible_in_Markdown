@@ -11,7 +11,7 @@ Place that zip file in the same folder as this bash script.
 Run the bash script.  In about 3 to 4 minutes you will have a master folder with 66 sub-folders (one for each Book of the Bible) and in each folder will be a file for each of the chapters in that particualr book.
 
 ## For Best Viewing Results:
-The following css snippet will move the verse numbers to the side, gray them out slightly making for a less obstrusive rreading of the text.  The verse numbers will be "there" but they won't be "in your face."
+The following css snippet will move the verse numbers to the side, gray them out slightly making for a less obstrusive reading of the text.  The verse numbers will be "there" but they won't be "in your face."
 
 1. Turn CSS Snippets "On" in your settings:
 - click on the "settings" icon
